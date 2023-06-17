@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kimo-cloudstorage-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kimo-sbucket
+  template:
+    metadata:
+      labels:
+        app: kimo-sbucket
+    spec:
+      containers:
+        - name: kimo-py-container
+          image: gcr.io/sandbox-io-289003/my-py-app
+          ports:
+            - containerPort: 8080
