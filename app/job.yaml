@@ -1,10 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Job
 metadata:
   name: kimo-cloudstorage-deployment
   namespace: wl-identity-namespace
 spec:
-  replicas: 3
+  replicas: 
   selector:
     matchLabels:
       app: kimo-sbucket
@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: kimo-py-container
-          image: gcr.io/sandbox-io-289003/kimo-py-app
+           image: gcr.io/sandbox-io-289003/kimo-py-app
+         resartPolicy: Never        
           ports:
             - containerPort: 8080
       serviceAccountName: kube-sa
